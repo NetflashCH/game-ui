@@ -19,11 +19,14 @@
     .toggleButton>div {
         translate: -132%;
     }
+
+
 }
 
 body {
     background: url('./assets/main.svg') no-repeat center center fixed;
 }
+
 ::-webkit-scrollbar {
     width: 0;
     border-radius: 0.5rem;
@@ -45,4 +48,14 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: $clr-black;
+}
+
+
+.activeMenu {
+    opacity: 1;
+    bottom: 0;
+}
+
+.activButton {
+    rotate: -90deg;
 }

@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
 import { currency, first, group, shield, key, tracky, main } from "./assets";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./assets/store/store";
@@ -10,13 +10,34 @@ function App() {
 
 	const dispatch = useDispatch();
 
-	const toggleButtonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+const menuRef = useRef<HTMLDivElement>(null)
+const toggleButtonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.currentTarget.classList.toggle("toggleButton");
+	};
+
+	const activeMenuHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.currentTarget.classList.toggle("activButton");
+        menuRef.current?.classList.toggle("activeMenu");
 	};
 
 	return (
 		<>
-			<div className="absolute w-[460px] h-[584px] border-t-[6px] border-[#AC2B20] rounded-t-[4px] bg-[#09283B] overflow-y-scroll  px-[1rem] py-[1.3rem] right-[5%] bottom-0">
+			<button
+				type="button"
+				className="w-[50px] h-[50px] bg-[#AC2B20] absolute bottom-6 right-[2%] rounded-full grid place-content-center cursor-pointer hover:scale-110 transition-all duration-300 "
+				onClick={activeMenuHandler}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					width="35"
+					height="35"
+					fill="white"
+				>
+					<path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z"></path>
+				</svg>
+			</button>
+			<div className="absolute w-[460px] h-[584px] border-t-[6px] border-[#AC2B20] rounded-t-[4px] bg-[#09283B] overflow-y-scroll  px-[1rem] py-[1.3rem] right-[6%] bottom-[-100%] opacity-0 transition-all duration-300 " ref={menuRef}>
 				<h1 className="text-[#fff] font-bold text-[1.5rem] mb-[.5rem]">
 					MY JOBS
 				</h1>
